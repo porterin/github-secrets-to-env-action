@@ -50,7 +50,14 @@ const convertTypes = {
     camel: camel_case_1.camelCase,
     constant: constant_case_1.constantCase,
     pascal: pascal_case_1.pascalCase,
-    snake: snake_case_1.snakeCase
+    snake: snake_case_1.snakeCase,
+    tfvar: s => {
+        const prefix = 'TF_VAR_';
+        if (s.startsWith(prefix)) {
+            return `${prefix}${s.slice(prefix.length).toLowerCase()}`;
+          }
+          return s.toLowerCase();
+        }
 };
 function run() {
     return __awaiter(this, void 0, void 0, function* () {
